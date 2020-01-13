@@ -1,29 +1,22 @@
 .chat-main
   .main-header
     .main-header__left-box
-      %h2.main-header__left-box__current-group fuck
+      %h2.main-header__left-box__current-group
+        = @group.name
       %ul.main-header__left-box__member-list
         Member :
-        %li.main-header__left-box__member-list__member aaaaa
-    = link_to '', class: '' do
+        %li.main-header__left-box__member-list__member
+          - @group.users.each do |user|
+            = user.name
+    = link_to edit_group_path(@group), class: '' do
       .main-header__edit-btn Edit
   .messages
-    .message
-      .message__upper-info
-        %p.message__upper-info__talker fuck
-        %p.message__upper-info__date 2020/01/09(Thu) 23:35:19
-      %p.message__text fuck
-    .message
-      .message__upper-info
-        %p.message__upper-info__talker fuck
-        %p.message__upper-info__date 2020/01/09(Thu) 23:35:19
-      %p.message__text fuck
-      = image_tag ""
+    = render @messages
   .form
-    %form#new_message.new_message
+    = form_for [@group, @message], html: {class: 'new_message'} do |f|
       .input-box
-        %input.input-box__text{name: "message[content]", placeholder: "type a message", type: "text"}
-        %label.input-box__image{for: "message_image"}
+        = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+        = f.label :image, class: 'input-box__image' do
           = fa_icon 'picture-o'
-          %input#message_image.input-box__image__file{name: "message[image]", type: "file"}
-      %input.submit-btn{name: "commit", type: "submit", value: "Send"}
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'submit-btn'

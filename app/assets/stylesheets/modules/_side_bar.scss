@@ -23,14 +23,12 @@
       display: flex;
       li {
         margin-left: 0.3rem;
-        a {
-          .fa {
-            display: inline-block;
-            font: normal normal normal 14px/1 FontAwesome;
-            font-size: inherit;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-          }
+        .fa {
+          display: inline-block;
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: inherit;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
         }
       }
     }
@@ -46,11 +44,11 @@
 
 .group {
   margin-bottom: 40px;
-  &__group-name {
+  &__name {
     font-size: 15px;
     margin-bottom: 5px;
   }
-  &__latest-message {
+  &__message {
     font-size: 11px;
   }
 }
